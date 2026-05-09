@@ -24,8 +24,12 @@ def load_data():
     import gdown
     file_id = "1mKfUcSkrubVJ_wR0O-XpyRURe-yzloAE"
     output = "creditcard.csv"
-    gdown.download(f"https://drive.google.com/uc?id={file_id}", output=output, quiet=False)
-    df = pd.read_csv(output)
+    gdown.download(
+        f"https://drive.google.com/uc?id={file_id}&confirm=t",
+        output=output,
+        quiet=False
+    )
+    df = pd.read_csv(output, encoding="utf-8")
     df.columns = df.columns.str.strip()
     return df
 
