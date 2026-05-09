@@ -27,7 +27,9 @@ def load_data():
     return df
 
 data = load_data()
-data.columns = data.columns.str.strip()  # removes hidden spaces in column names
+data.columns = data.columns.str.strip()
+st.write(data.columns.tolist())  # debug line
+st.stop()
 
 # ── BASIC STATS ──
 total  = len(data)
