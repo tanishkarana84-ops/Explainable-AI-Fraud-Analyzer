@@ -21,7 +21,9 @@ st.markdown("---")
 # ── LOAD DATA ──
 @st.cache_data
 def load_data():
-    df = pd.read_csv("creditcard.csv")
+    file_id = "1mKfUcSkrubVJ_wR0O-XpyRURe-yzloAE"
+    url = f"https://drive.google.com/uc?id={file_id}"
+    df = pd.read_csv(url)
     return df
 
 data = load_data()
