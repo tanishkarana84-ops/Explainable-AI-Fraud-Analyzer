@@ -22,17 +22,29 @@ st.markdown("---")
 @st.cache_data
 def load_data():
     import gdown
+    import os
+
     file_id = "1mKfUcSkrubVJ_wR0O-XpyRURe-yzloAE"
     output = "creditcard.csv"
-    gdown.download(
-        f"https://drive.google.com/uc?id={file_id}&confirm=t",
-        output=output,
-        quiet=False
-    )
-    df = pd.read_csv(output, encoding="utf-8")
-    df.columns = df.columns.str.strip()
-    return df
 
+    # Download only if file doesn't exist
+    if not os.path.exists(output):
+        gdown.download(
+            f"https://drive.google.com/uc?id={file_id}",
+            output,
+            quiet=False
+        )
+
+    # Read CSV safely
+    df = pd.read_csv(
+        output,
+        low_memory=False,
+        on_bad_lines="skip"
+    )
+
+    df.columns = df.columns.str.strip()
+
+    return df
 data = load_data()
 
 
