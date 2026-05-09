@@ -21,15 +21,15 @@ st.markdown("---")
 # ── LOAD DATA ──
 @st.cache_data
 def load_data():
+    import gdown
     file_id = "1mKfUcSkrubVJ_wR0O-XpyRURe-yzloAE"
-    url = f"https://drive.google.com/uc?id={file_id}&confirm=t"
-    df = pd.read_csv(url)
+    output = "creditcard.csv"
+    gdown.download(id=file_id, output=output, quiet=False, fuzzy=True)
+    df = pd.read_csv(output)
     df.columns = df.columns.str.strip()
     return df
 
 data = load_data()
-st.write("Columns:", data.columns.tolist())
-st.stop()
 
 
 # ── BASIC STATS ──
