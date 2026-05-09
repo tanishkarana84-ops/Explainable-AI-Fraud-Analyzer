@@ -24,10 +24,12 @@ def load_data():
     file_id = "1mKfUcSkrubVJ_wR0O-XpyRURe-yzloAE"
     url = f"https://drive.google.com/uc?id={file_id}&confirm=t"
     df = pd.read_csv(url)
+    df.columns = df.columns.str.strip()
     return df
 
 data = load_data()
-data.columns = data.columns.str.strip()
+st.write("Columns:", data.columns.tolist())
+st.stop()
 
 
 # ── BASIC STATS ──
