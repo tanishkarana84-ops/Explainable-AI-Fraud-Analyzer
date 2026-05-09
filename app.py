@@ -22,14 +22,13 @@ st.markdown("---")
 @st.cache_data
 def load_data():
     file_id = "1mKfUcSkrubVJ_wR0O-XpyRURe-yzloAE"
-    url = f"https://drive.google.com/uc?id={file_id}"
+    url = f"https://drive.google.com/uc?id={file_id}&confirm=t"
     df = pd.read_csv(url)
     return df
 
 data = load_data()
 data.columns = data.columns.str.strip()
-st.write(data.columns.tolist())  # debug line
-st.stop()
+
 
 # ── BASIC STATS ──
 total  = len(data)
